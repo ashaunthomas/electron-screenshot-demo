@@ -1,6 +1,6 @@
 const electron = require('electron');
 
-const { app } = electron;
+const { app, BrowserWindow, globalShortcut } = electron;
 
 let mainWindow;
 
@@ -15,5 +15,9 @@ app.on('ready', _ => {
     mainWindow.loadURL(`file://${__dirname}/capture.html`);
     mainWindow.on('close', _ => {
         mainWindow = null;
+    })
+
+    globalShortcut.register('CommandOrControl+Alt+D', _ => {
+        console.log("got shortcut");
     })
 })
